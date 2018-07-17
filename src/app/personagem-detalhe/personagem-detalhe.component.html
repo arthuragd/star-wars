@@ -1,0 +1,43 @@
+<div class="card w-75" style="margin: 0 auto; margin-top: 40px" *ngIf="info; else loading">
+  <div class="card  border-dark">
+    <div class="card-header text-center">
+      <h1>{{ info.name }}</h1>
+    </div>
+    <div class="card-body text-center">
+      <h5 class="card-title">Caracteristicas</h5>
+    </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Altura</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Cor do Cabelo</th>
+            <th scope="col">Cor da Pele</th>
+            <th scope="col">Cor dos Olhos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td *ngIf="info.height == 'unknown'">Desconhecido</td>
+            <td *ngIf="info.mass == 'unknown'">Desconhecido</td>
+            <td *ngIf="info.height != 'unknown'">{{ info.height }}cm</td>
+            <td *ngIf="info.mass != 'unknown'">{{ info.mass }}kg</td>
+            <td>{{ info.hair_color.substring(0, 1).toUpperCase() + info.hair_color.substring(1) }}</td>
+            <td>{{ info.skin_color.substring(0, 1).toUpperCase() + info.skin_color.substring(1) }}</td>
+            <td>{{ info.eye_color.substring(0, 1).toUpperCase() + info.eye_color.substring(1) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item text-center" *ngIf="info.birth_year != 'unknown'"><b>Data de Nascimento: </b>{{ info.birth_year }}</li>
+          <li class="list-group-item text-center" *ngIf="info.birth_year == 'unknown'"><b>Desconhecido </b></li>
+        </ul>
+    <div class="card-footer text-muted" *ngFor="let film of info.films">
+     {{ film }}
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>

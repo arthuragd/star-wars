@@ -1,0 +1,51 @@
+<div class="row mt-3" *ngIf="listarPlanetas; else loading" style="margin-left: 25px">
+    <div class="card text-white bg-secondary" style="width: 23rem;" *ngFor="let planeta of listarPlanetas.results">
+      <div class="card-header">
+        <h5 class="card-title">{{ planeta.name }}</h5>
+      </div>
+      <div class="card-body" *ngIf="planeta.rotation_period == 'unknown'">
+        <b>Periodo rotação:</b> Desconhecido
+      </div>
+      <div class="card-body" *ngIf="planeta.rotation_period != 'unknown'">
+        <b>Periodo rotação:</b> {{ planeta.rotation_period }}
+      </div>
+      <div class="card-body" *ngIf="planeta.orbital_period == 'unknown'">
+        <b>Periodo orbita:</b> Desconhecido
+      </div>
+      <div class="card-body" *ngIf="planeta.orbital_period != 'unknown'">
+        <b>Periodo orbita:</b> {{ planeta.orbital_period }}
+      </div>
+      <div class="card-footer" style="text-align: center">
+        <a href="#" class="btn btn-light btn-sm">Mais Detalhes</a>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <div class="loader"></div>
+  </ng-template>
+  <br>
+  
+  <div *ngIf="pag == 1 ">
+    <div style="text-align: center">
+      <p>{{ pag }} de 7</p>
+      <button class="btn btn-primary btn-sm" (click)="avanc = true ; loadPlanetas()">></button>
+    </div>
+  </div>
+  
+  <div *ngIf="pag > 1 && pag <= 6 ">
+    <div style="text-align: center">
+      <p>{{ pag }} de 7</p>
+      <button class="btn btn-primary btn-sm" (click)="avanc = false; loadPlanetas()">
+        <</button>
+          <button class="btn btn-primary btn-sm" (click)="avanc = true ;loadPlanetas()" style="margin-left: 50px">></button>
+    </div>
+  </div>
+  
+  <div *ngIf="pag == 7">
+    <div style="text-align: center">
+      <p>{{ pag }}</p>
+      <button class="btn btn-primary btn-sm" (click)="avanc = false; loadPlanetas()">
+        <</button>
+    </div>
+  </div>

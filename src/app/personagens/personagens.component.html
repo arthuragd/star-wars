@@ -1,0 +1,57 @@
+<div class="row mt-3" *ngIf="listarPersonagens; else loading" style="margin-left: 25px">
+  <div class="card text-white bg-secondary" style="width: 23rem;" *ngFor="let personagem of listarPersonagens.results">
+    <div class="card-header text-center">
+      <h5 class="card-title">{{ personagem.name }}</h5>
+    </div>
+    <div class="card-body" *ngIf="personagem.height == 'unknown'">
+      <b>Altura:</b> Desconhecido
+    </div>
+    <div class="card-body" *ngIf="personagem.height != 'unknown'">
+      <b>Altura:</b> {{ personagem.height }}cm
+    </div>
+    <div class="card-body" *ngIf="personagem.mass == 'unknown'">
+      <b>Peso:</b> Desconhecido
+    </div>
+    <div class="card-body" *ngIf="personagem.mass != 'unknown'">
+      <b>Peso:</b> {{ personagem.mass }}kg
+    </div>
+    <div class="card-body" *ngIf="personagem.gender == 'n/a'">
+      
+    </div>
+    <div class="card-body" *ngIf="personagem.gender != 'n/a'">
+      <b>Sexo: </b>{{ personagem.gender}}
+    </div>
+    <div class="card-footer" style="text-align: center">
+      <a [routerLink]="['/personagem', personagem.url.substr(28)]" class="btn btn-light btn-sm">Mais Detalhes</a>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
+<br>
+
+<div *ngIf="pag == 1 ">
+  <div style="text-align: center">
+    <p>{{ pag }} de 9</p>
+    <button class="btn btn-primary btn-sm" (click)="avanc = true ; loadPersonagens()">></button>
+  </div>
+</div>
+
+<div *ngIf="pag > 1 && pag <= 8 ">
+  <div style="text-align: center">
+    <p>{{ pag }} de 9</p>
+    <button class="btn btn-primary btn-sm" (click)="avanc = false; loadPersonagens()">
+      <</button>
+        <button class="btn btn-primary btn-sm" (click)="avanc = true ;loadPersonagens()" style="margin-left: 50px">></button>
+  </div>
+</div>
+
+<div *ngIf="pag == 9">
+  <div style="text-align: center">
+    <p>{{ pag }}</p>
+    <button class="btn btn-primary btn-sm" (click)="avanc = false; loadPersonagens()">
+      <</button>
+  </div>
+</div>

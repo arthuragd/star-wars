@@ -1,0 +1,29 @@
+.star{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100;
+    height: 200px;
+}
+
+ul{
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;   
+}
+
+li a{
+    color: #000;
+    
+}
+
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+  
+
+
+
+
+  
