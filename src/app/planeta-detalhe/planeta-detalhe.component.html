@@ -1,0 +1,62 @@
+<div class="card w-75" style="margin: 0 auto; margin-top: 40px; margin-bottom: 100px" *ngIf="info; else loading">
+  <div class="card  border-dark">
+    <div class="card-header text-center">
+      <h1>{{ info.name }}</h1>
+    </div>
+    <div class="card-body text-center">
+      <h3>
+        <b>Clima: </b>{{ info.climate}}</h3>
+      <h4>
+        <b>Terreno: </b>{{ info.terrain}}</h4>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Diametro</th>
+          <th scope="col">Gravidade</th>
+          <th scope="col">Periodo Orbita</th>
+          <th scope="col">Periodo Rotacao</th>
+          <th scope="col">Populacao</th>
+          <th scope="col">Superficie Agua</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ info.diameter }}</td>
+          <td>{{ info.gravity }} </td>
+          <td>{{ info.orbital_period }} </td>
+          <td> {{ info.rotation_period }}</td>
+          <td> {{ info.population }}</td>
+          <td> {{ info.surface_water }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card text-center">
+      <h3>Filmes</h3>
+      <div *ngIf="!filmeVazio()">
+        <div class="card-body text-muted" *ngFor="let f of filme">
+          <li *ngIf="f">{{ f.title }}</li>
+        </div>
+      </div>
+      <div *ngIf="filmeVazio()">
+        <span *ngIf="loadFilme()">Carregando Filmes ...</span>
+      </div>
+    </div>
+    <div class="card text-center">
+      <h3>Residentes</h3>
+      <div *ngIf="!residenteVazio()">
+        <div class="card-body text-muted" *ngFor="let r of residentes">
+          <a [routerLink]="['/personagem', r.url.substr(28)]"><li *ngIf="r">{{ r.name }}</li></a>
+        </div>
+      </div>
+      <div *ngIf="residenteVazio()">
+        <div *ngIf="!existe">Sem Residentes</div>
+        <span *ngIf="loadResidentes()">Carregando Pilotos ...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>

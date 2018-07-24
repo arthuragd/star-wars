@@ -36,7 +36,6 @@ export class PlanetasComponent implements OnInit {
     this.subscription = this.listarPlanetasService.getPlanetas(this.pag).subscribe(
       (planetas) => {
         this.listarPlanetas = planetas;
-        console.log(this.listarPlanetas);
       }
     );
   }

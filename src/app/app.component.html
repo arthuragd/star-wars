@@ -5,7 +5,7 @@
 
 
 <!--NavBar-->
-<ul class="nav justify-content-center navbar-fixed-top">
+<ul class="nav justify-content-center navbar sticky-top" style="background-color: #ffffff">
   <li class="nav-item">
     <a class="nav-link active" href="">Home</a>
   </li>
@@ -16,13 +16,13 @@
     <a class="nav-link" [routerLink]= "['planetas']">Planetas</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Naves</a>
+    <a class="nav-link" [routerLink]= "['naves']">Naves</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Veículos</a>
+    <a class="nav-link" [routerLink]= "['veiculos']">Veículos</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Espécies</a>
+    <a class="nav-link" [routerLink]= "['especies']">Espécies</a>
   </li>
 </ul>
 

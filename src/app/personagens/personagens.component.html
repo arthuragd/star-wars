@@ -15,11 +15,18 @@
     <div class="card-body" *ngIf="personagem.mass != 'unknown'">
       <b>Peso:</b> {{ personagem.mass }}kg
     </div>
-    <div class="card-body" *ngIf="personagem.gender == 'n/a'">
-      
+    <div class="card-body text-center" *ngIf="personagem.gender == 'n/a'">
+      <img src="https://cdn2.iconfinder.com/data/icons/space-stuff-2/68/r2d2-512.png">
     </div>
-    <div class="card-body" *ngIf="personagem.gender != 'n/a'">
-      <b>Sexo: </b>{{ personagem.gender}}
+    <div class="card-body" *ngIf="personagem.gender == 'female'">
+      <b>Sexo:
+        <img src="http://www.iconarchive.com/download/i103538/sensibleworld/starwars/Leia.ico">
+      </b>
+    </div>
+    <div class="card-body" *ngIf="personagem.gender == 'male'">
+      <b>Sexo:
+        <img src="https://cdn2.iconfinder.com/data/icons/star-wars-12/512/movie_film_star_wars_cinema_-16-512.png">
+      </b>
     </div>
     <div class="card-footer" style="text-align: center">
       <a [routerLink]="['/personagem', personagem.url.substr(28)]" class="btn btn-light btn-sm">Mais Detalhes</a>

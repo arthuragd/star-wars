@@ -1,39 +1,94 @@
-<div class="card w-75" style="margin: 0 auto; margin-top: 40px" *ngIf="info; else loading">
+<div class="card w-75" style="margin: 0 auto; margin-top: 40px; margin-bottom: 100px" *ngIf="info; else loading">
   <div class="card  border-dark">
     <div class="card-header text-center">
       <h1>{{ info.name }}</h1>
+      <div *ngIf="planeta">
+        <h2>
+          <img src="https://solarsystem.nasa.gov/system/feature_items/images/18_mercury_new.png"> 
+          {{ planeta.name }}
+        </h2>
+      </div>
+      <div *ngIf="!planeta">
+        <h2>
+          <span *ngIf="loadPlaneta()"></span>
+        </h2>
+      </div>
     </div>
     <div class="card-body text-center">
-      <h5 class="card-title">Caracteristicas</h5>
+      <h3 class="card-title">Caracteristicas</h3>
+      <div *ngIf="especie">
+        <div class="card-body text-muted" *ngFor="let e of especie">
+          <h4 *ngIf="e"><b>Especie: </b>{{ e.name }}<b> Lingua: </b>{{ e.language }}</h4>
+        </div>
+      </div>
+      <h4 *ngIf="!planeta">
+        <span *ngIf="loadEspecie()"></span>
+      </h4>
     </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Altura</th>
-            <th scope="col">Peso</th>
-            <th scope="col">Cor do Cabelo</th>
-            <th scope="col">Cor da Pele</th>
-            <th scope="col">Cor dos Olhos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td *ngIf="info.height == 'unknown'">Desconhecido</td>
-            <td *ngIf="info.mass == 'unknown'">Desconhecido</td>
-            <td *ngIf="info.height != 'unknown'">{{ info.height }}cm</td>
-            <td *ngIf="info.mass != 'unknown'">{{ info.mass }}kg</td>
-            <td>{{ info.hair_color.substring(0, 1).toUpperCase() + info.hair_color.substring(1) }}</td>
-            <td>{{ info.skin_color.substring(0, 1).toUpperCase() + info.skin_color.substring(1) }}</td>
-            <td>{{ info.eye_color.substring(0, 1).toUpperCase() + info.eye_color.substring(1) }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <ul class="list-group list-group-flush">
-          <li class="list-group-item text-center" *ngIf="info.birth_year != 'unknown'"><b>Data de Nascimento: </b>{{ info.birth_year }}</li>
-          <li class="list-group-item text-center" *ngIf="info.birth_year == 'unknown'"><b>Desconhecido </b></li>
-        </ul>
-    <div class="card-footer text-muted" *ngFor="let film of info.films">
-     {{ film }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Altura</th>
+          <th scope="col">Peso</th>
+          <th scope="col">Cor do Cabelo</th>
+          <th scope="col">Cor da Pele</th>
+          <th scope="col">Cor dos Olhos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td *ngIf="info.height == 'unknown'">Desconhecido</td>
+          <td *ngIf="info.mass == 'unknown'">Desconhecido</td>
+          <td *ngIf="info.height != 'unknown'">{{ info.height }}cm</td>
+          <td *ngIf="info.mass != 'unknown'">{{ info.mass }}kg</td>
+          <td>{{ info.hair_color.substring(0, 1).toUpperCase() + info.hair_color.substring(1) }}</td>
+          <td>{{ info.skin_color.substring(0, 1).toUpperCase() + info.skin_color.substring(1) }}</td>
+          <td>{{ info.eye_color.substring(0, 1).toUpperCase() + info.eye_color.substring(1) }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item text-center" *ngIf="info.birth_year != 'unknown'">
+        <b>Data de Nascimento: </b>{{ info.birth_year }}
+      </li>
+      <li class="list-group-item text-center" *ngIf="info.birth_year == 'unknown'">
+        <b>Desconhecido </b>
+      </li>
+    </ul>
+    <div class="card text-center">
+      <h3>Filmes</h3>
+      <div *ngIf="!filmeVazio()">
+        <div class="card-body text-muted" *ngFor="let a of filme">
+          <li *ngIf="a">{{ a.title }}</li>
+        </div>
+      </div>
+      <div *ngIf="filmeVazio()">
+        <span *ngIf="loadFilme()">Carregando Filmes ...</span>
+      </div>
+    </div>
+    <div class="card text-center">
+      <h3>Naves</h3>
+      <div *ngIf="naves">
+        <div class="card-body text-muted" *ngFor="let n of naves">
+          <li *ngIf="n">{{ n.name }} -
+            <b>Modelo: </b>{{ n.model }}</li>
+        </div>
+      </div>
+      <div *ngIf="!planeta">
+        <span *ngIf="loadNave()"></span>
+      </div>
+    </div>
+    <div class="card text-center">
+      <h3>Veículos</h3>
+      <div *ngIf="veiculos">
+        <div class="card-body text-muted" *ngFor="let v of veiculos">
+          <li *ngIf="v">{{ v.name }} -
+            <b>Modelo: </b>{{ v.model }}</li>
+        </div>
+      </div>
+      <div *ngIf="!planeta">
+        <span *ngIf="loadVeiculos()"></span>
+      </div>
     </div>
   </div>
 </div>

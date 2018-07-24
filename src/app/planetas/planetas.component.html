@@ -16,7 +16,7 @@
         <b>Periodo orbita:</b> {{ planeta.orbital_period }}
       </div>
       <div class="card-footer" style="text-align: center">
-        <a href="#" class="btn btn-light btn-sm">Mais Detalhes</a>
+        <a [routerLink]="['/planeta', planeta.url.substr(29)]" class="btn btn-light btn-sm">Mais Detalhes</a>
       </div>
     </div>
   </div>

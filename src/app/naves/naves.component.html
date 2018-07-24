@@ -1,0 +1,45 @@
+<div class="row mt-3" *ngIf="listarNaves; else loading" style="margin-left: 25px">
+    <div class="card text-white bg-secondary" style="width: 23rem;" *ngFor="let nave of listarNaves.results">
+      <div class="card-header">
+        <h5 class="card-title">{{ nave.name }}</h5>
+      </div>
+      <div class="card-body">
+        <b>Modelo:</b> {{ nave.model }}
+      </div>
+      <div class="card-body">
+        <b>Passageiros:</b> {{ nave.passengers }}
+      </div>
+      <div class="card-footer" style="text-align: center">
+        <a [routerLink]="['/nave', nave.url.substr(31)]" class="btn btn-light btn-sm">Mais Detalhes</a>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <div class="loader"></div>
+  </ng-template>
+  <br>
+  
+  <div *ngIf="pag == 1 ">
+    <div style="text-align: center">
+      <p>{{ pag }} de 4</p>
+      <button class="btn btn-primary btn-sm" (click)="avanc = true ; loadNaves()">></button>
+    </div>
+  </div>
+  
+  <div *ngIf="pag > 1 && pag <= 3 ">
+    <div style="text-align: center">
+      <p>{{ pag }} de 4</p>
+      <button class="btn btn-primary btn-sm" (click)="avanc = false; loadNaves()">
+        <</button>
+          <button class="btn btn-primary btn-sm" (click)="avanc = true ;loadNaves()" style="margin-left: 50px">></button>
+    </div>
+  </div>
+  
+  <div *ngIf="pag == 4">
+    <div style="text-align: center">
+      <p>{{ pag }}</p>
+      <button class="btn btn-primary btn-sm" (click)="avanc = false; loadNaves()">
+        <</button>
+    </div>
+  </div>

@@ -1,3 +1,9 @@
+import { ListarNaves } from './naves.interface';
+import { ListarVeiculos } from './veiculos.interface';
+import { ListarEspecies } from './especies.interface';
+import { ListarPlanetas } from './planetas.interface';
+import { ListarFilmes } from "./filmes.interface";
+
 export interface ListarPersonagens{
 	name: string;
 	height:string;
@@ -8,4 +14,9 @@ export interface ListarPersonagens{
 	gender:string;
 	count: number;
 	next: string;
+	films: Array<ListarFilmes>;
+	homeworld: ListarPlanetas;
+	species: Array<ListarEspecies>;
+	vehicles: Array<ListarVeiculos>;
+	starships: Array<ListarNaves>;
 }

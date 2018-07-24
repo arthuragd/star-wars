@@ -1,0 +1,62 @@
+<div class="card w-75" style="margin: 0 auto; margin-top: 40px; margin-bottom: 100px" *ngIf="info; else loading">
+  <div class="card  border-dark">
+    <div class="card-header text-center">
+      <h1>{{ info.name }}</h1>
+    </div>
+    <div class="card-body text-center">
+      <h3>
+        <b>Modelo: </b>{{ info.model}}</h3>
+      <h4>
+        <b>Classe: </b>{{ info.starship_class }}</h4>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Fabricante</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Comprimento</th>
+          <th scope="col">Capacidade de Carga</th>
+          <th scope="col">Tripulação</th>
+          <th scope="col">Passageiros</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ info.manufacturer }}</td>
+          <td>{{ info.cost_in_credits }} </td>
+          <td>{{ info.length }} </td>
+          <td> {{ info.cargo_capacity }}</td>
+          <td> {{ info.crew }}</td>
+          <td> {{ info.passengers }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card text-center">
+      <h3>Filmes</h3>
+      <div *ngIf="!filmeVazio()">
+        <div class="card-body text-muted" *ngFor="let f of filme">
+          <li *ngIf="f">{{ f.title }}</li>
+        </div>
+      </div>
+      <div *ngIf="filmeVazio()">
+        <span *ngIf="loadFilme()">Carregando Filmes ...</span>
+      </div>
+    </div>
+    <div class="card text-center">
+      <h3>Pilotos</h3>
+      <div *ngIf="!pilotoVazio()">
+        <div class="card-body text-muted" *ngFor="let p of piloto">
+          <li *ngIf="p">{{ p.name }}</li>
+        </div>
+      </div>
+      <div *ngIf="pilotoVazio()">
+        <div *ngIf="!existe">Sem Piloto</div>
+        <span *ngIf="loadPiloto()">Carregando Pilotos ...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
